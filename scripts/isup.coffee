@@ -14,12 +14,12 @@
 #   jmhobbs
 
 module.exports = (robot) ->
-  robot.respond /is (.*?) (up|down)(\?)?/i, (msg) ->
+  robot.respond /is (?:http\:\/\/)?(.*?) (up|down)(\?)?/i, (msg) ->
     isUp msg, msg.match[1], (domain) ->
       msg.send domain
 
 isUp = (msg, domain, cb) ->
-  msg.http("http://isitup.org/{domain}.json")
+  msg.http("http://isitup.org/#{domain}.json")
     .header('User-Agent', 'Hubot')
     .get() (err, res, body) ->
       response = JSON.parse(body)
