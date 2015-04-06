@@ -22,7 +22,8 @@
     "hubot-what-the-fox": "~1.1.0",
     "hubot-2048": "~1.0.1",
     "hubot-qr": "~0.0.2",
-    "hubot-plusplus": "~1.1.5"
+    "hubot-plusplus": "~1.1.5",
+    "cleverbot-node": "0.1.1"
   },
   "engines": {
     "node": "0.10.x"
