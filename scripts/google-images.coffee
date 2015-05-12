@@ -113,6 +113,9 @@ googleApi = (msg, q, count, cb) ->
       images = JSON.parse(body)
       images = images.responseData?.results
       number_returned = 0
+      if (count > 15)
+        count = default_bomb
+
       for i in [1..count] by 1
         if images?.length > 0
           cb randomImageUrl(msg, images)
