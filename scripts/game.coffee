@@ -13,34 +13,36 @@
 # Author:
 #   jumoog
 
-module.exports = (robot) ->
-robot.respond /(lets play)( wapon )?(.*)/i, (msg)->
-  userChoice = msg.match[3]
-  computerChoice = Math.random()
-  if computerChoice < 0.34
-    computerChoice = "rock"
-  else if computerChoice <= 0.67
-    computerChoice = "paper"
-  else
-    computerChoice = "scissors"
-  compare = (choice1, choice2) ->
-    msg.send "The result is a tie!"  if choice1 is choice2
-    if choice1 is "rock"
-      if choice2 is "scissors"
-        msg.send "rock wins"
-      else
-        msg.send "paper wins"
-    if choice1 is "paper"
-      if choice2 is "rock"
-        msg.send "paper wins"
-      else
-        msg.send "scissors wins"  if choice2 is "scissors"
-      if choice1 is "scissors"
-        if choice2 is "rock"
-          msg.send "rock wins"
-        else
-          msg.send "scissors wins"  if choice2 is "paper"
+ compare = (userSelection, computerSelection) ->
+   if userSelection == undefined
+     return 'Please, select an option before play'
+   if userSelection == computerSelection
+     return 'It is a draw!'
+   if userSelection == 'stone'
+     if computerSelection == 'scissor'
+       return 'You win.'
+     else
+       return 'The computer win. Try again.'
+   else if userSelection == 'paper'
+     if computerSelection == 'stone'
+       return 'You win.'
+     else if 'scissor'
+       return 'The computer win. Try again.'
+   else if userSelection == 'scissor'
+     if computerSelection == 'stone'
+       return 'The computer win. Try again.'
+     else
+       return 'You win.'
+   return
 
-  msg.send "User Choice: " + userChoice
-  msg.send "Computer Choice: " + computerChoice
-  compare userChoice, computerChoice
+ module.exports = (robot) ->
+   robot.respond /(lets play)( wapon )?(.*)/i, (msg)->
+     userChoice = msg.match[3]
+     computerOption = Math.random()
+     if computerOption < 0.34
+       computerOption = 'stone'
+     else if computerOption <= 0.67
+       computerOption = 'paper'
+     else
+       computerOption = 'scissor'
+     msg.send = compare(userChoice, computerOption)
