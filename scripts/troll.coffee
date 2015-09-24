@@ -14,6 +14,6 @@
 #   brandonjmckay
 
 module.exports = (robot) ->
-  robot.respond /(?:sudo) (.*) with ?(.*)/i, (msg) ->
+  robot.respond /(?:troll) (.*) with ?(.*)/i, (msg) ->
     msg.send "Tee hee... They've been trolled! You're a terrible person..."
     robot.messageRoom msg.match[1], msg.match[2]
