@@ -14,6 +14,6 @@
 #   brandonjmckay
 
 module.exports = (robot) ->
-  robot.respond /troll (.*) with (.*) please/i, (msg) ->
+  robot.respond /troll (.*) with ([-_\.0-9a-zA-Z]+)/i, (msg) ->
     msg.send "Tee hee... They've been trolled! You're a terrible person..."
     robot.messageRoom msg.match[1], msg.match[2]
